@@ -59,7 +59,6 @@ func getCoursePage(semesterId uint64, username string, password string) goquery.
 			"100000",
 			"1",
 			"100000",
-			//"100",
 		},
 	}
 	data, _ := json.Marshal(form)
