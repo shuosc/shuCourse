@@ -2,6 +2,7 @@ package handler
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 	"shuCourse/infrastructure"
 	"shuCourse/model/class"
@@ -132,10 +133,15 @@ func DefaultFormatHandler(w http.ResponseWriter, r *http.Request) {
 func CourseSelectionURLHandler(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.ParseUint(r.URL.Query().Get("id"), 10, 64)
 	if err != nil {
-		w.WriteHeader(404)
+		w.WriteHeader(400)
 		return
 	}
 	url, err := courseSelectionUrl.GetBySemesterId(id)
+	if err != nil {
+		log.Println("user tried to get CourseSelectionURL for semester", id, "which does not exist")
+		w.WriteHeader(404)
+		return
+	}
 	response := struct {
 		Url string `json:"url"`
 	}{url}
