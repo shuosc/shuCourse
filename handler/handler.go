@@ -131,6 +131,7 @@ func DefaultFormatHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func CourseSelectionURLHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	id, err := strconv.ParseUint(r.URL.Query().Get("id"), 10, 64)
 	if err != nil {
 		w.WriteHeader(400)
