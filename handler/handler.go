@@ -7,6 +7,7 @@ import (
 	"shuCourse/model/class"
 	courseModel "shuCourse/model/course"
 	"shuCourse/model/courseByTeacher"
+	"shuCourse/model/courseSelectionUrl"
 	"strconv"
 )
 
@@ -126,6 +127,20 @@ func DefaultFormatHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		ThreeIdHandler(w, r)
 	}
+}
+
+func CourseSelectionURLHandler(w http.ResponseWriter, r *http.Request) {
+	id, err := strconv.ParseUint(r.URL.Query().Get("id"), 10, 64)
+	if err != nil {
+		w.WriteHeader(404)
+		return
+	}
+	url, err := courseSelectionUrl.GetBySemesterId(id)
+	response := struct {
+		Url string `json:"url"`
+	}{url}
+	data, _ := json.Marshal(response)
+	_, _ = w.Write(data)
 }
 
 func PingPongHandler(w http.ResponseWriter, _ *http.Request) {

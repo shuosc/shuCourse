@@ -9,6 +9,7 @@ import (
 
 func main() {
 	http.HandleFunc("/ping", handler.PingPongHandler)
+	http.HandleFunc("/course-selection-url", handler.CourseSelectionURLHandler)
 	http.HandleFunc("/course", handler.DefaultFormatHandler)
 	err := http.ListenAndServe(":"+os.Getenv("PORT"), nil)
 	if err != nil {
