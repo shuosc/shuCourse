@@ -6,7 +6,7 @@
 
 ```json
 {
-   "id": 	   课程id
+   "id":       课程id
    "name":     课程名称
    "credit":   课程学分数
 }
@@ -16,7 +16,7 @@
 
 ```json
 {
-   "id": 	                课程id
+   "id": 	            课程id
    "course_id":             所属课程id
    "semester_id":           开课所在学期的id,
    "in_course_teacher_id":  选课系统中的教师号
@@ -69,10 +69,10 @@
 
   检查服务是否可用，应该直接返回`pong`。
 
-- `GET /semester?id=[一个id]`
+- `GET /course?id=[一个id]`
 
   返回id对应的"标准查询输出格式数据"。
 
-- `GET /semester?semester_id=[一个id]&course_id=[一个id]&in_course_teacher_id=[一个id]`
+- `GET /course?semester_id=[一个id]&course_id=[一个id]&in_course_teacher_id=[一个id]`
 
   用于直接从选课网站上得到的信息查询对应的"标准查询输出格式数据"。
