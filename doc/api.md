@@ -41,6 +41,12 @@
 - 将`course_id`展开成`course`的全部信息
 - `classes`包含这一课程的所有课
 
+### 选课URL
+```json
+{
+  "url": 选课URL
+}
+
 ## cli
 
 ### addAdmin
@@ -72,6 +78,10 @@
 - `GET /course?id=[一个id]`
 
   返回id对应的"标准查询输出格式数据"。
+  
+- `GET /course-selection-url?id=[一个id]`
+
+  返回id对应学期的选课url。
 
 - `GET /course?semester_id=[一个id]&course_id=[一个id]&in_course_teacher_id=[一个id]`
 
