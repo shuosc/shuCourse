@@ -85,3 +85,4 @@ Temporary Items
 *.out
 .idea
 data
+logfile
