@@ -6,7 +6,7 @@ var Campuses = map[string]uint8{}
 
 func init() {
 	rows, err := infrastructure.DB.Query(`
-	SELECT id,name
+	SELECT id, unnest(name)
 	FROM campus;
 	`)
 	if err != nil {

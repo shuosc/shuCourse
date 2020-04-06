@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-export DB_ADDRESS="postgres://postgres@localhost:5432/postgres?sslmode=disable"
-export PROXY_AUTH_ADDRESS="http://cloud.shu.xn--io0a7i:30080/auth/login/proxy/course"
-export PROXY_ADDRESS="http://cloud.shu.xn--io0a7i:30080/proxy/course/"
+export DB_ADDRESS="postgres://localhost:5432/postgres?sslmode=disable"
+export PROXY_AUTH_ADDRESS="https://cloud.shuosc.com/auth/login/shu-course-proxy"
+export PROXY_ADDRESS="https://cloud.shuosc.com/api/shu-course-proxy/"
 export PORT="8001"
-gin -p 8000 run main.go
+gin -p 8000 run web/main.go

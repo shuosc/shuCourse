@@ -2,6 +2,7 @@ package class
 
 import (
 	"github.com/lib/pq"
+	"log"
 	"shuCourse/infrastructure"
 )
 
@@ -21,7 +22,7 @@ type Class struct {
 
 func Get(courseByTeacherId uint64) ([]Class, error) {
 	rows, err := infrastructure.DB.Query(`
-	SELECT campus_id,place,weeks,weekday,begin_sector,end_sector
+	SELECT campus_id, place, weeks, weekday, begin_sector, end_sector
 	FROM Class
 	WHERE course_by_teacher_id=$1;
 	`, courseByTeacherId)
@@ -41,8 +42,11 @@ func Get(courseByTeacherId uint64) ([]Class, error) {
 }
 
 func Save(class Class) {
-	_, _ = infrastructure.DB.Exec(`
+	_, err := infrastructure.DB.Exec(`
 	INSERT INTO Class(course_by_teacher_id, campus_id, place, weeks, weekday, begin_sector, end_sector)
 	VALUES ($1,$2,$3,$4,$5,$6,$7)
 	`, class.CourseByTeacherId, class.CampusId, class.Place, pq.Array(class.Weeks), class.Weekday, class.BeginSector, class.EndSector)
+	if err != nil {
+		log.Println(err)
+	}
 }
