@@ -3,6 +3,7 @@ package crawl
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"io/ioutil"
 	"net/http"
@@ -62,6 +63,7 @@ func getCoursePage(semesterId uint64, username string, password string) goquery.
 		},
 	}
 	data, _ := json.Marshal(form)
+	fmt.Println(string(data))
 	request, err := http.NewRequest("POST", os.Getenv("PROXY_ADDRESS")+"post-form", bytes.NewReader(data))
 	if err != nil || request == nil {
 		panic(err)
@@ -181,7 +183,7 @@ func FetchAllCourses(semesterId uint64, username string, password string) {
 			}
 			return strings.Trim(columnSelection.Text(), " \n")
 		})
-		if len(columns) == 13 {
+		if len(columns) == 14 {
 			// 是包含课程编号和名称的标题行
 			lastCourseString = columns[0] + "&" + columns[1] + "&" + columns[2]
 			allColumns[lastCourseString] = [][]string{columns[3:]}
